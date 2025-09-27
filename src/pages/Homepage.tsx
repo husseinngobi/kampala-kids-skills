@@ -63,38 +63,97 @@ const Homepage = () => {
       {/* Hero Section */}
       <Hero />
 
-      {/* Video Section */}
+      {/* Video Showcase Section */}
       <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h2 className="section-title">See Our Programme in Action</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Watch how children develop confidence and practical skills in our structured learning environment.
+              Watch real children developing confidence and practical skills in our hands-on learning environment.
             </p>
           </div>
           
-          <div className="max-w-4xl mx-auto">
-            <div className="relative aspect-video bg-gray-200 rounded-2xl shadow-2xl overflow-hidden">
-              {/* Placeholder for video upload */}
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* House Cleaning Video */}
+            <div className="card-hover">
+              <div className="bg-card rounded-2xl shadow-lg overflow-hidden">
+                <video 
+                  controls 
+                  className="w-full aspect-video object-cover"
+                  poster="/placeholder.svg"
+                >
+                  <source src="/videos/house-cleaning.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="p-6">
+                  <div className="flex items-center mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mr-3">
+                      <Home className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold">House Cleaning Skills</h3>
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">Programme Highlights Video</h3>
-                  <p className="text-muted-foreground">Upload your promotional video here</p>
+                  <p className="text-muted-foreground">Children learning proper cleaning techniques, organization, and maintaining a tidy environment.</p>
                 </div>
               </div>
-              
-              {/* Sample image overlay */}
-              <img 
-                src={childrenLearning2} 
-                alt="Children learning table setting skills"
-                className="w-full h-full object-cover opacity-60"
-              />
             </div>
+
+            {/* Shoe Care Video */}
+            <div className="card-hover">
+              <div className="bg-card rounded-2xl shadow-lg overflow-hidden">
+                <video 
+                  controls 
+                  className="w-full aspect-video object-cover"
+                  poster="/placeholder.svg"
+                >
+                  <source src="/videos/shoe-care.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="p-6">
+                  <div className="flex items-center mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mr-3">
+                      <Sparkles className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold">Personal Care & Hygiene</h3>
+                  </div>
+                  <p className="text-muted-foreground">Teaching children proper shoe care and personal hygiene habits for confidence and self-respect.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Pet Care Video */}
+            <div className="card-hover">
+              <div className="bg-card rounded-2xl shadow-lg overflow-hidden">
+                <video 
+                  controls 
+                  className="w-full aspect-video object-cover"
+                  poster="/placeholder.svg"
+                >
+                  <source src="/videos/pet-care.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="p-6">
+                  <div className="flex items-center mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mr-3">
+                      <Heart className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold">Pet & Plant Care</h3>
+                  </div>
+                  <p className="text-muted-foreground">Building responsibility and empathy through caring for pets and nurturing living things.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-lg text-muted-foreground mb-6">
+              These are just a few examples of the hands-on skills your child will master in our programme.
+            </p>
+            <Button variant="secondary" size="lg" asChild>
+              <Link to="/enrolment">
+                Enroll Your Child Today
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

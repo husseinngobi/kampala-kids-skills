@@ -8,11 +8,9 @@ const Navigation = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Programme Details', href: '/programme' },
+    { name: 'Programme Details', href: '/programme-details' },
     { name: 'Curriculum', href: '/curriculum' },
     { name: 'Enrolment', href: '/enrolment' },
-    { name: 'Assessment', href: '/assessment' },
-    { name: 'Parent Engagement', href: '/parent-engagement' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -52,7 +50,7 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
               <Phone className="w-4 h-4" />
-              <span>+256 XXX XXX XXX</span>
+              <span>+256 754 723 614</span>
             </div>
             <Button variant="hero" size="sm" asChild>
               <Link to="/enrolment">Enroll Now</Link>

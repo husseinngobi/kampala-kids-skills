@@ -1,0 +1,19 @@
+{
+  "css.validate": true,
+  "css.lint.unknownAtRules": "ignore",
+  "scss.validate": true,
+  "scss.lint.unknownAtRules": "ignore",
+  "less.validate": true,
+  "less.lint.unknownAtRules": "ignore",
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "html": "HTML",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "css.customData": [
+    ".vscode/css-custom-data.json"
+  ]
+}

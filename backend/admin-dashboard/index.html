@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampala Kids Skills - Admin Dashboard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="shortcut icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="apple-touch-icon" href="favicon.jpeg">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="favicon.jpeg" alt="Kampala Kids Skills Logo" class="h-8 w-8 mr-3 rounded">
+                    <h1 class="text-xl font-bold">Kampala Kids Skills - Admin</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="notificationBtn" class="relative p-2 text-white hover:bg-blue-700 rounded" title="Notifications">
+                            <i class="fas fa-bell" aria-hidden="true"></i>
+                            <span id="notificationBadge" class="absolute -top-1 -right-1 bg-red-500 text-xs rounded-full h-5 w-5 flex items-center justify-center notification-hidden">0</span>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-2 text-white hover:bg-blue-700 px-3 py-2 rounded">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="adminName">Admin</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile Settings</a>
+                            <a href="#" id="logoutBtn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md h-screen overflow-y-auto">
+            <nav class="mt-8">
+                <div class="px-4 space-y-2">
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </button>
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="enrollments">
+                        <i class="fas fa-users mr-3"></i>
+                        Enrollments
+                        <span id="enrollmentCount" class="ml-auto bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">0</span>
+                    </button>
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="inquiries">
+                        <i class="fas fa-envelope mr-3"></i>
+                        Inquiries
+                        <span id="inquiryCount" class="ml-auto bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full text-xs">0</span>
+                    </button>
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="videos">
+                        <i class="fas fa-play-circle mr-3"></i>
+                        Videos
+                        <span id="videoCount" class="ml-auto bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">0</span>
+                    </button>
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="parents">
+                        <i class="fas fa-user-friends mr-3"></i>
+                        Parents & Children
+                    </button>
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="reports">
+                        <i class="fas fa-chart-bar mr-3"></i>
+                        Reports
+                    </button>
+                    <button class="nav-item w-full flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors" data-section="settings">
+                        <i class="fas fa-cog mr-3"></i>
+                        Settings
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <!-- Login Section -->
+            <div id="loginSection" class="max-w-md mx-auto mt-16">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="text-center mb-8">
+                        <i class="fas fa-user-shield text-4xl text-blue-600 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-800">Admin Login</h2>
+                        <p class="text-gray-600 mt-2">Access your admin dashboard</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label for="loginEmail" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                            <input type="email" id="loginEmail" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="admin@kampala-kids-skills.com" placeholder="Enter your email" title="Admin email address" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="loginPassword" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                            <input type="password" id="loginPassword" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" value="admin123" placeholder="Enter your password" title="Admin password" required>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        </button>
+                    </form>
+                    <div id="loginError" class="mt-4 text-red-600 text-sm text-center hidden"></div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div id="dashboardContent" class="hidden">
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="section">
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard Overview</h1>
+                        <p class="text-gray-600">Welcome to your admin dashboard. Monitor your programme's performance and manage operations.</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Total Enrollments</p>
+                                    <p class="text-3xl font-bold text-blue-600" id="totalEnrollments">0</p>
+                                </div>
+                                <div class="bg-blue-100 p-3 rounded-full">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Active Children</p>
+                                    <p class="text-3xl font-bold text-green-600" id="activeChildren">0</p>
+                                </div>
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <i class="fas fa-child text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">New Inquiries</p>
+                                    <p class="text-3xl font-bold text-yellow-600" id="newInquiries">0</p>
+                                </div>
+                                <div class="bg-yellow-100 p-3 rounded-full">
+                                    <i class="fas fa-envelope text-yellow-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Total Revenue</p>
+                                    <p class="text-3xl font-bold text-purple-600" id="totalRevenue">UGX 0</p>
+                                </div>
+                                <div class="bg-purple-100 p-3 rounded-full">
+                                    <i class="fas fa-money-bill-wave text-purple-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-lg font-semibold mb-4">Recent Enrollments</h3>
+                            <div id="recentEnrollments" class="space-y-4">
+                                <div class="text-center text-gray-500 py-8">
+                                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                                    <p>Loading recent enrollments...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-lg font-semibold mb-4">Recent Inquiries</h3>
+                            <div id="recentInquiries" class="space-y-4">
+                                <div class="text-center text-gray-500 py-8">
+                                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                                    <p>Loading recent inquiries...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enrollments Section -->
+                <div id="enrollments" class="section hidden">
+                    <div class="mb-8 flex justify-between items-center">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-2">Enrollments Management</h1>
+                            <p class="text-gray-600">Manage programme enrollments and student information.</p>
+                        </div>
+                        <button id="exportEnrollments" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                            <i class="fas fa-download mr-2"></i>Export CSV
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <label for="statusFilter" class="sr-only">Filter by status</label>
+                            <select id="statusFilter" class="border border-gray-300 rounded-lg px-3 py-2" title="Filter enrollments by status">
+                                <option value="all">All Statuses</option>
+                                <option value="PENDING">Pending</option>
+                                <option value="ACTIVE">Active</option>
+                                <option value="COMPLETED">Completed</option>
+                                <option value="CANCELLED">Cancelled</option>
+                            </select>
+                            <label for="searchEnrollments" class="sr-only">Search enrollments</label>
+                            <input type="text" id="searchEnrollments" placeholder="Search by name or email..." class="border border-gray-300 rounded-lg px-3 py-2" title="Search enrollments by name or email">
+                            <label for="dateFromFilter" class="sr-only">Filter from date</label>
+                            <input type="date" id="dateFromFilter" class="border border-gray-300 rounded-lg px-3 py-2" title="Filter enrollments from this date" placeholder="From date">
+                            <label for="dateToFilter" class="sr-only">Filter to date</label>
+                            <input type="date" id="dateToFilter" class="border border-gray-300 rounded-lg px-3 py-2" title="Filter enrollments to this date" placeholder="To date">
+                        </div>
+                    </div>
+
+                    <!-- Enrollments Table -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div id="enrollmentsTable" class="overflow-x-auto">
+                            <div class="text-center text-gray-500 py-8">
+                                <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                                <p>Loading enrollments...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other sections will be loaded dynamically -->
+                <div id="inquiries" class="section hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">Contact Inquiries</h1>
+                    <p class="text-gray-600 mb-8">Manage contact inquiries and customer support.</p>
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-envelope text-4xl mb-4"></i>
+                        <p>Inquiries management coming soon...</p>
+                    </div>
+                </div>
+
+                <div id="videos" class="section hidden">
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h1 class="text-3xl font-bold text-gray-800 mb-2">Video Management</h1>
+                                <p class="text-gray-600">Upload, manage, and organize educational videos for the programme.</p>
+                            </div>
+                            <button id="uploadVideoBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Upload Video
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Video Analytics Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Total Videos</p>
+                                    <p class="text-3xl font-bold text-blue-600" id="totalVideosCount">0</p>
+                                </div>
+                                <div class="bg-blue-100 p-3 rounded-full">
+                                    <i class="fas fa-video text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Public Videos</p>
+                                    <p class="text-3xl font-bold text-green-600" id="publicVideosCount">0</p>
+                                </div>
+                                <div class="bg-green-100 p-3 rounded-full">
+                                    <i class="fas fa-eye text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Featured Videos</p>
+                                    <p class="text-3xl font-bold text-orange-600" id="featuredVideosCount">0</p>
+                                </div>
+                                <div class="bg-orange-100 p-3 rounded-full">
+                                    <i class="fas fa-star text-orange-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Total Size</p>
+                                    <p class="text-3xl font-bold text-purple-600" id="totalVideoSize">0 MB</p>
+                                </div>
+                                <div class="bg-purple-100 p-3 rounded-full">
+                                    <i class="fas fa-database text-purple-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Filters and Search -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+                                <input type="text" id="videoSearchInput" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Search videos...">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                                <select id="videoCategoryFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" title="Filter videos by category">
+                                    <option value="all">All Categories</option>
+                                    <option value="HOUSE_CLEANING">House Cleaning</option>
+                                    <option value="PET_CARE">Pet Care</option>
+                                    <option value="SHOE_CARE">Shoe Care</option>
+                                    <option value="TABLE_SETTING">Table Setting</option>
+                                    <option value="GENERAL">General</option>
+                                    <option value="EDUCATIONAL">Educational</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                                <select id="videoStatusFilter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" title="Filter videos by status">
+                                    <option value="ACTIVE">Active</option>
+                                    <option value="INACTIVE">Inactive</option>
+                                    <option value="DELETED">Deleted</option>
+                                    <option value="all">All Status</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+                                <select id="videoSortBy" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" title="Sort videos by field">
+                                    <option value="uploadedAt">Upload Date</option>
+                                    <option value="title">Title</option>
+                                    <option value="views">Views</option>
+                                    <option value="fileSize">File Size</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <button id="applyVideoFilters" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>Apply Filters
+                            </button>
+                            <div class="flex space-x-2">
+                                <button id="bulkDeleteVideos" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                                    <i class="fas fa-trash mr-2"></i>Bulk Delete
+                                </button>
+                                <button id="bulkFeatureVideos" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors">
+                                    <i class="fas fa-star mr-2"></i>Bulk Feature
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Videos Table -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <input type="checkbox" id="selectAllVideos" class="rounded" title="Select all videos">
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Video</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Views</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uploaded</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="videosTableBody" class="bg-white divide-y divide-gray-200">
+                                    <!-- Video rows will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                            <div class="flex-1 flex justify-between sm:hidden">
+                                <button id="prevPageMobile" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Previous</button>
+                                <button id="nextPageMobile" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Next</button>
+                            </div>
+                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        Showing <span id="videosFrom">1</span> to <span id="videosTo">10</span> of <span id="videosTotal">0</span> results
+                                    </p>
+                                </div>
+                                <div>
+                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" id="videosPagination">
+                                        <!-- Pagination buttons will be inserted here -->
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="parents" class="section hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">Parents & Children</h1>
+                    <p class="text-gray-600 mb-8">Manage parent and children profiles.</p>
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-users text-4xl mb-4"></i>
+                        <p>Parent management interface coming soon...</p>
+                    </div>
+                </div>
+
+                <div id="reports" class="section hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">Reports & Analytics</h1>
+                    <p class="text-gray-600 mb-8">View detailed reports and analytics.</p>
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-chart-line text-4xl mb-4"></i>
+                        <p>Reports interface coming soon...</p>
+                    </div>
+                </div>
+
+                <div id="settings" class="section hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">Settings</h1>
+                    <p class="text-gray-600 mb-8">Configure system settings and preferences.</p>
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-cogs text-4xl mb-4"></i>
+                        <p>Settings interface coming soon...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Enrollment Details Modal -->
+    <div id="enrollmentModal" class="modal-overlay flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-full overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Enrollment Details</h3>
+                <button class="close-modal text-gray-500 hover:text-gray-700" title="Close modal" aria-label="Close enrollment details modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="enrollmentModalContent">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Upload Modal -->
+    <div id="uploadVideoModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-bold text-gray-900">Upload New Video</h3>
+                    <button id="closeUploadModal" class="text-gray-400 hover:text-gray-600" title="Close upload modal">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="uploadVideoForm" enctype="multipart/form-data">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="videoTitle" class="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                            <input type="text" id="videoTitle" name="title" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter video title" required>
+                        </div>
+                        <div>
+                            <label for="videoCategory" class="block text-sm font-medium text-gray-700 mb-2">Category *</label>
+                            <select id="videoCategory" name="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                                <option value="">Select Category</option>
+                                <option value="HOUSE_CLEANING">House Cleaning</option>
+                                <option value="PET_CARE">Pet Care</option>
+                                <option value="SHOE_CARE">Shoe Care</option>
+                                <option value="TABLE_SETTING">Table Setting</option>
+                                <option value="GENERAL">General</option>
+                                <option value="EDUCATIONAL">Educational</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="videoDescription" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <textarea id="videoDescription" name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter video description"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="videoFile" class="block text-sm font-medium text-gray-700 mb-2">Video File *</label>
+                        <input type="file" id="videoFile" name="video" accept="video/*" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                        <p class="text-sm text-gray-500 mt-1">Maximum file size: 100MB. Supported formats: MP4, AVI, MOV, WMV</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="videoIsPublic" name="isPublic" class="rounded" checked>
+                            <label for="videoIsPublic" class="ml-2 text-sm text-gray-700">Public Video</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="videoIsFeatured" name="isFeatured" class="rounded">
+                            <label for="videoIsFeatured" class="ml-2 text-sm text-gray-700">Featured Video</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Upload Progress -->
+                    <div id="uploadProgress" class="hidden mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-blue-700">Uploading...</span>
+                            <span class="text-sm font-medium text-blue-700" id="uploadPercentage">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full transition-all duration-300 progress-bar-initial" id="uploadProgressBar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancelUpload" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">Cancel</button>
+                        <button type="submit" id="submitUpload" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-upload mr-2"></i>Upload Video
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Edit Modal -->
+    <div id="editVideoModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-bold text-gray-900">Edit Video</h3>
+                    <button id="closeEditModal" class="text-gray-400 hover:text-gray-600" title="Close edit modal">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="editVideoForm">
+                    <input type="hidden" id="editVideoId">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="editVideoTitle" class="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                            <input type="text" id="editVideoTitle" name="title" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="editVideoCategory" class="block text-sm font-medium text-gray-700 mb-2">Category *</label>
+                            <select id="editVideoCategory" name="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                                <option value="HOUSE_CLEANING">House Cleaning</option>
+                                <option value="PET_CARE">Pet Care</option>
+                                <option value="SHOE_CARE">Shoe Care</option>
+                                <option value="TABLE_SETTING">Table Setting</option>
+                                <option value="GENERAL">General</option>
+                                <option value="EDUCATIONAL">Educational</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="editVideoDescription" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <textarea id="editVideoDescription" name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="editVideoIsPublic" name="isPublic" class="rounded">
+                            <label for="editVideoIsPublic" class="ml-2 text-sm text-gray-700">Public Video</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="editVideoIsFeatured" name="isFeatured" class="rounded">
+                            <label for="editVideoIsFeatured" class="ml-2 text-sm text-gray-700">Featured Video</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="editVideoStatus" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                        <select id="editVideoStatus" name="status" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                            <option value="ACTIVE">Active</option>
+                            <option value="INACTIVE">Inactive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancelEdit" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">Cancel</button>
+                        <button type="submit" id="submitEdit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-save mr-2"></i>Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

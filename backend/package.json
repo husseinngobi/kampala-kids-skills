@@ -1,0 +1,37 @@
+{
+  "name": "kampala-kids-skills-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Children's Life Skills Programme",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "setup": "node setup.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "node prisma/seed.js",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "compression": "^1.7.4",
+    "sharp": "^0.32.6",
+    "@prisma/client": "^5.7.1",
+    "nodemailer": "^6.9.7",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prisma": "^5.7.1"
+  }
+}

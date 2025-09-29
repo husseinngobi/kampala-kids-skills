@@ -1,0 +1,29 @@
+/* Sidebar CSS Custom Properties */
+:root {
+  --sidebar-width: 16rem;
+  --sidebar-width-mobile: 18rem;
+  --sidebar-width-icon: 3rem;
+}
+
+/* Sidebar container with dynamic properties */
+.sidebar-container {
+  --sidebar-width: 16rem;
+  --sidebar-width-icon: 3rem;
+}
+
+/* Mobile sidebar width override */
+.sidebar-mobile {
+  --sidebar-width: 18rem;
+}
+
+/* Dynamic skeleton width classes */
+.skeleton-50 { --skeleton-width: 50%; }
+.skeleton-60 { --skeleton-width: 60%; }
+.skeleton-70 { --skeleton-width: 70%; }
+.skeleton-80 { --skeleton-width: 80%; }
+.skeleton-90 { --skeleton-width: 90%; }
+
+/* Skeleton text with dynamic width */
+.skeleton-text {
+  max-width: var(--skeleton-width);
+}

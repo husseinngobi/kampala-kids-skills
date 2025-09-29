@@ -1,0 +1,774 @@
+Attached HTML and CSS Context
+
+<div data-lov-id="src\components\Navigation.tsx:38:8" data-lov-name="div" data-component-path="src\components\Navigation.tsx" data-component-line="38" data-component-file="Navigation.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22flex%20justify-between%20h-16%22%7D" class="flex justify-between h-16"><div data-lov-id="src\components\Navigation.tsx:40:10" data-lov-name="div" data-component-path="src\components\Navigation.tsx" data-component-line="40" data-component-file="Navigation.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22flex%20items-center%22%7D" class="flex items-center"><a data-lov-id="src\components\Navigation.tsx:41:12" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="41" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22flex%20items-center%20space-x-2%22%7D" class="flex items-center space-x-2" href="/"><img data-lov-id="src\components\Navigation.tsx:42:14" data-lov-name="img" data-component-path="src\components\Navigation.tsx" data-component-line="42" data-component-file="Navigation.tsx" data-component-name="img" data-component-content="%7B%22className%22%3A%22w-10%20h-10%20object-contain%20drop-shadow-md%22%7D" src="/src/assets/life-skills-logo.jpeg" alt="Life Skills Programme Logo" class="w-10 h-10 object-contain drop-shadow-md"><span data-lov-id="src\components\Navigation.tsx:47:14" data-lov-name="span" data-component-path="src\components\Navigation.tsx" data-component-line="47" data-component-file="Navigation.tsx" data-component-name="span" data-component-content="%7B%22text%22%3A%22Life%20Skills%20Programme%22%2C%22className%22%3A%22hidden%20sm%3Ablock%20text-xl%20font-bold%20text-primary%22%7D" class="hidden sm:block text-xl font-bold text-primary">Life Skills Programme</span><span data-lov-id="src\components\Navigation.tsx:50:14" data-lov-name="span" data-component-path="src\components\Navigation.tsx" data-component-line="50" data-component-file="Navigation.tsx" data-component-name="span" data-component-content="%7B%22text%22%3A%22LSP%22%2C%22className%22%3A%22sm%3Ahidden%20text-lg%20font-bold%20text-primary%22%7D" class="sm:hidden text-lg font-bold text-primary">LSP</span></a></div><div data-lov-id="src\components\Navigation.tsx:57:10" data-lov-name="div" data-component-path="src\components\Navigation.tsx" data-component-line="57" data-component-file="Navigation.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22hidden%20lg%3Aflex%20items-center%20space-x-1%22%7D" class="hidden lg:flex items-center space-x-1"><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/">Home</a><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/programme-details">Programme Details</a><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/curriculum">Curriculum</a><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/assessment">Assessment</a><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/parental-engagement">Parent Engagement</a><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/enrolment">Enrolment</a><a data-lov-id="src\components\Navigation.tsx:59:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="59" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22className%22%3A%22px-3%20py-2%20rounded-md%20text-sm%20font-medium%20text-gray-700%20hover%3Atext-primary%20hover%3Abg-primary-light%2F20%20transition-all%20duration-300%22%7D" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary-light/20 transition-all duration-300" href="/contact">Contact</a></div><div data-lov-id="src\components\Navigation.tsx:70:10" data-lov-name="div" data-component-path="src\components\Navigation.tsx" data-component-line="70" data-component-file="Navigation.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22hidden%20md%3Aflex%20items-center%20space-x-4%22%7D" class="hidden md:flex items-center space-x-4"><div data-lov-id="src\components\Navigation.tsx:71:12" data-lov-name="div" data-component-path="src\components\Navigation.tsx" data-component-line="71" data-component-file="Navigation.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22flex%20items-center%20space-x-2%20text-sm%20text-gray-600%22%7D" class="flex items-center space-x-2 text-sm text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4" data-lov-id="src\components\Navigation.tsx:72:14" data-lov-name="Phone" data-component-path="src\components\Navigation.tsx" data-component-line="72" data-component-file="Navigation.tsx" data-component-name="Phone" data-component-content="%7B%22className%22%3A%22w-4%20h-4%22%7D"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span data-lov-id="src\components\Navigation.tsx:73:14" data-lov-name="span" data-component-path="src\components\Navigation.tsx" data-component-line="73" data-component-file="Navigation.tsx" data-component-name="span" data-component-content="%7B%22text%22%3A%22%2B256%20754%20723%20614%22%7D">+256 754 723 614</span></div><a data-lov-id="src\components\Navigation.tsx:76:14" data-lov-name="Link" data-component-path="src\components\Navigation.tsx" data-component-line="76" data-component-file="Navigation.tsx" data-component-name="Link" data-component-content="%7B%22text%22%3A%22Enroll%20Now%22%7D" class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-gradient-to-r from-primary via-secondary to-accent text-white hover:shadow-2xl hover:scale-105 transition-all duration-300 text-lg font-semibold h-9 rounded-md px-3" href="/enrolment">Enroll Now</a></div><div data-lov-id="src\components\Navigation.tsx:81:10" data-lov-name="div" data-component-path="src\components\Navigation.tsx" data-component-line="81" data-component-file="Navigation.tsx" data-component-name="div" data-component-content="%7B%22className%22%3A%22lg%3Ahidden%20flex%20items-center%22%7D" class="lg:hidden flex items-center"><button data-lov-id="src\components\Navigation.tsx:82:12" data-lov-name="Button" data-component-path="src\components\Navigation.tsx" data-component-line="82" data-component-file="Navigation.tsx" data-component-name="Button" data-component-content="%7B%22className%22%3A%22p-2%22%7D" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md p-2" aria-label="Toggle navigation menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6" data-lov-id="src\components\Navigation.tsx:89:52" data-lov-name="Menu" data-component-path="src\components\Navigation.tsx" data-component-line="89" data-component-file="Navigation.tsx" data-component-name="Menu" data-component-content="%7B%22className%22%3A%22w-6%20h-6%22%7D"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div>
+
+
+/* Matched Rule from user-agent */
+div {
+  display: block;
+}
+
+/* Matched Rule from user-agent */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Matched Rule from regular */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Matched Rule from regular */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Matched Rule from regular */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Matched Rule from regular */
+.flex {
+  display: flex;
+  display: flex;
+}
+
+/* Matched Rule from regular */
+.h-16 {
+  height: 4rem;
+  height: 4rem;
+}
+
+/* Matched Rule from regular */
+.justify-between {
+  justify-content: space-between;
+  justify-content: space-between;
+}
+
+/* Inherited from ancestor level 1 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 1 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.max-w-7xl {
+  max-width: 80rem;
+  max-width: 80rem;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+.sm\:px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Inherited from ancestor level 2 (user-agent) */
+article, aside, footer, header, hgroup, main, nav, search, section {
+  display: block;
+}
+
+/* Inherited from ancestor level 2 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.main-navigation {
+  height: var(--nav-height);
+  height: var(--nav-height);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.sticky {
+  position: sticky;
+  position: sticky;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.top-0 {
+  top: 0px;
+  top: 0px;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.z-50 {
+  z-index: 50;
+  z-index: 50;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.transform-gpu {
+  transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+.will-change-transform {
+  will-change: transform;
+  will-change: transform;
+}
+
+/* Inherited from ancestor level 3 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 3 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Inherited from ancestor level 3 (regular) */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100vh;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+/* Inherited from ancestor level 3 (regular) */
+.to-white {
+  --tw-gradient-to: #fff var(--tw-gradient-to-position);
+  --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+
+/* Inherited from ancestor level 4 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 4 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 4 (regular) */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Inherited from ancestor level 4 (regular) */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Inherited from ancestor level 4 (regular) */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Inherited from ancestor level 5 (user-agent) */
+body {
+  display: block;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Inherited from ancestor level 5 (regular) */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Inherited from ancestor level 5 (regular) */
+body {
+  margin: 0;
+  line-height: inherit;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  line-height: inherit;
+}
+
+/* Inherited from ancestor level 5 (regular) */
+body {
+  background-color: hsl(var(--background));
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: hsl(var(--foreground));
+  line-height: 1.6;
+  padding-top: var(--nav-height);
+  background-color: hsl(var(--background));
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: hsl(var(--foreground));
+  line-height: 1.6;
+  padding-top: var(--nav-height);
+}
+
+/* Inherited from ancestor level 6 (user-agent) */
+html {
+  display: block;
+}
+
+/* Inherited from ancestor level 6 (user-agent) */
+:root {
+  view-transition-name: root;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(229, 231, 235);
+  border-right-color: rgb(229, 231, 235);
+  border-bottom-color: rgb(229, 231, 235);
+  border-left-color: rgb(229, 231, 235);
+}
+
+/* Inherited from ancestor level 6 (regular) */
+* {
+  border-color: hsl(var(--border));
+}
+
+/* Inherited from ancestor level 6 (regular) */
+html, :host {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.5;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Inherited from ancestor level 6 (regular) */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --nav-height: 4rem;
+  --primary: 210 100% 56%;
+  --primary-foreground: 0 0% 100%;
+  --primary-light: 210 100% 85%;
+  --primary-glow: 210 100% 70%;
+  --secondary: 142 76% 36%;
+  --secondary-foreground: 0 0% 100%;
+  --secondary-light: 142 50% 85%;
+  --accent: 25 95% 53%;
+  --accent-foreground: 0 0% 100%;
+  --accent-light: 25 95% 85%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 210 100% 56%;
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent)) 100%);
+  --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(220 14% 96% / 0.5));
+  --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.06);
+  --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
+  --shadow-large: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
+  --shadow-colored: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --radius: 0.5rem;
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --nav-height: 4rem;
+  --primary: 210 100% 56%;
+  --primary-foreground: 0 0% 100%;
+  --primary-light: 210 100% 85%;
+  --primary-glow: 210 100% 70%;
+  --secondary: 142 76% 36%;
+  --secondary-foreground: 0 0% 100%;
+  --secondary-light: 142 50% 85%;
+  --accent: 25 95% 53%;
+  --accent-foreground: 0 0% 100%;
+  --accent-light: 25 95% 85%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 210 100% 56%;
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent)) 100%);
+  --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(220 14% 96% / 0.5));
+  --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.06);
+  --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
+  --shadow-large: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
+  --shadow-colored: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --radius: 0.5rem;
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}

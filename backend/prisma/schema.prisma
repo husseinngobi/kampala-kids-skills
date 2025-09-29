@@ -1,0 +1,250 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Parent/Guardian model
+model Parent {
+  id                String   @id @default(cuid())
+  firstName         String
+  lastName          String
+  email             String   @unique
+  password          String
+  phone             String
+  occupation        String?
+  emergencyContact  String?
+  emergencyPhone    String?
+  address           String?
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  children          Child[]
+  contactInquiries  ContactInquiry[]
+  feedback          Feedback[]
+
+  @@map("parents")
+}
+
+// Child model
+model Child {
+  id                String   @id @default(cuid())
+  firstName         String
+  lastName          String
+  age               Int
+  gender            String   // MALE, FEMALE
+  medicalConditions String?
+  allergies         String?
+  specialNeeds      String?
+  parentId          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  parent            Parent       @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  enrollments       Enrollment[]
+  assessments       Assessment[]
+
+  @@map("children")
+}
+
+// Programme Level model
+model ProgrammeLevel {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String
+  ageMin      Int
+  ageMax      Int
+  fee         Float
+  skills      String   // JSON array of skills
+  duration    String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  enrollments Enrollment[]
+
+  @@map("programme_levels")
+}
+
+// Programme Session model
+model ProgrammeSession {
+  id                String   @id @default(cuid())
+  name              String   @unique
+  description       String?
+  startDate         DateTime
+  endDate           DateTime
+  location          String
+  maxCapacity       Int
+  currentEnrollment Int      @default(0)
+  status            String   @default("UPCOMING") // UPCOMING, ACTIVE, COMPLETED, CANCELLED
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  enrollments       Enrollment[]
+
+  @@map("programme_sessions")
+}
+
+// Enrollment model
+model Enrollment {
+  id                String   @id @default(cuid())
+  childId           String
+  programmeLevelId  String
+  sessionId         String
+  preferredSchedule String   @default("MORNING") // MORNING, AFTERNOON, EVENING
+  transportNeeded   Boolean  @default(false)
+  lunchRequired     Boolean  @default(false)
+  specialRequests   String?
+  status            String   @default("PENDING") // PENDING, CONFIRMED, IN_PROGRESS, COMPLETED, CANCELLED
+  paymentStatus     String   @default("PENDING") // PENDING, PAID, FAILED, REFUNDED
+  totalFee          Float
+  amountPaid        Float    @default(0)
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  child             Child            @relation(fields: [childId], references: [id], onDelete: Cascade)
+  programmeLevel    ProgrammeLevel   @relation(fields: [programmeLevelId], references: [id])
+  session           ProgrammeSession @relation(fields: [sessionId], references: [id])
+
+  @@map("enrollments")
+}
+
+// Video model
+model Video {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  category     String   // HOUSE_CLEANING, PET_CARE, SHOE_CARE, TABLE_SETTING, GENERAL, EDUCATIONAL
+  filename     String   @unique
+  originalName String
+  fileSize     Int
+  mimeType     String
+  duration     Int?     // in seconds
+  isPublic     Boolean  @default(true)
+  isFeatured   Boolean  @default(false)
+  views        Int      @default(0)
+  status       String   @default("ACTIVE") // ACTIVE, INACTIVE, DELETED
+  uploaderId   String
+  uploadedAt   DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  uploader     Admin    @relation(fields: [uploaderId], references: [id])
+
+  @@map("videos")
+}
+
+// Image model
+model Image {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  category     String   // ACTIVITIES, LEARNING, DINING, TABLE_SETTING, FACILITIES, GENERAL
+  filename     String   @unique
+  originalName String
+  fileSize     Int
+  mimeType     String
+  width        Int?
+  height       Int?
+  isPublic     Boolean  @default(true)
+  isFeatured   Boolean  @default(false)
+  views        Int      @default(0)
+  status       String   @default("ACTIVE") // ACTIVE, INACTIVE, DELETED
+  uploaderId   String
+  uploadedAt   DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  uploader     Admin    @relation("AdminImages", fields: [uploaderId], references: [id])
+
+  @@map("images")
+}
+
+// Contact Inquiry model
+model ContactInquiry {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  subject      String?
+  message      String
+  inquiryType  String   @default("GENERAL") // GENERAL, ENROLLMENT, FEEDBACK, COMPLAINT, SUGGESTION
+  status       String   @default("NEW") // NEW, IN_PROGRESS, RESPONDED, CLOSED
+  priority     String   @default("MEDIUM") // HIGH, MEDIUM, LOW
+  response     String?
+  parentId     String?
+  responderId  String?
+  respondedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  parent       Parent?  @relation(fields: [parentId], references: [id])
+  responder    Admin?   @relation(fields: [responderId], references: [id])
+
+  @@map("contact_inquiries")
+}
+
+// Feedback model
+model Feedback {
+  id                 String   @id @default(cuid())
+  name               String
+  email              String?
+  feedbackType       String   // TESTIMONIAL, SUGGESTION, COMPLAINT, GENERAL
+  rating             Int?     // 1-5 stars
+  feedback           String
+  allowPublicDisplay Boolean  @default(false)
+  status             String   @default("NEW") // NEW, APPROVED, REJECTED
+  parentId           String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  parent             Parent?  @relation(fields: [parentId], references: [id])
+
+  @@map("feedback")
+}
+
+// Assessment model
+model Assessment {
+  id         String   @id @default(cuid())
+  childId    String
+  skillArea  String   // CLEANING, PET_CARE, SHOE_CARE, TABLE_SETTING, etc.
+  preScore   Int?     // Score before training (1-10)
+  postScore  Int?     // Score after training (1-10)
+  notes      String?
+  assessorId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  child      Child    @relation(fields: [childId], references: [id], onDelete: Cascade)
+  assessor   Admin    @relation(fields: [assessorId], references: [id])
+
+  @@map("assessments")
+}
+
+// Admin model
+model Admin {
+  id          String    @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String    @unique
+  password    String
+  role        String    @default("ADMIN") // SUPER_ADMIN, ADMIN, TRAINER
+  permissions String?   // JSON array of permissions
+  isActive    Boolean   @default(true)
+  lastLogin   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  videos           Video[]
+  images           Image[] @relation("AdminImages")
+  contactInquiries ContactInquiry[]
+  assessments      Assessment[]
+
+  @@map("admins")
+}

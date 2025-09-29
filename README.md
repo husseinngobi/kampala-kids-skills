@@ -1,73 +1,158 @@
-# Welcome to your Lovable project
+# Kampala Kids Life Skills Programme
 
-## Project info
+A comprehensive full-stack application for managing children's life skills education and training programs.
 
-**URL**: https://lovable.dev/projects/a99690ad-cfb2-4146-bf6a-63c2a735a7b2
+## 🏗️ Project Structure
 
-## How can I edit this code?
+```text
+kampala-kids-skills/
+├── frontend/          # React + TypeScript + Vite frontend
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── ...
+├── backend/           # Node.js + Express + Prisma backend
+│   ├── src/
+│   ├── prisma/
+│   ├── package.json
+│   └── ...
+├── package.json       # Root package.json for managing both apps
+└── README.md         # This file
+```
 
-There are several ways of editing your application.
+## 🚀 Quick Start
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a99690ad-cfb2-4146-bf6a-63c2a735a7b2) and start prompting.
+- Node.js >= 16.0.0
+- npm >= 8.0.0
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
+1. Clone the repository:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+git clone <repository-url>
+cd kampala-kids-skills
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Install all dependencies:
 
-Follow these steps:
+```bash
+npm run install:all
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Set up the database (backend):
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+npm run db:setup
+npm run db:generate
+npm run db:push
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Start both frontend and backend in development mode:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+This will start:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Frontend: <http://localhost:5173>
+- Backend: <http://localhost:3000>
 
-**Use GitHub Codespaces**
+## 📝 Available Scripts
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Root Level Commands
 
-## What technologies are used for this project?
+- `npm run dev` - Start both frontend and backend in development mode
+- `npm run build` - Build both frontend and backend for production
+- `npm run start` - Start both apps in production mode
+- `npm run install:all` - Install dependencies for all projects
+- `npm run lint` - Run linting for both frontend and backend
 
-This project is built with:
+### Frontend Commands
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `npm run dev:frontend` - Start only the frontend in development
+- `npm run build:frontend` - Build only the frontend
+- `npm run start:frontend` - Start only the frontend in production mode
 
-## How can I deploy this project?
+### Backend Commands
 
-Simply open [Lovable](https://lovable.dev/projects/a99690ad-cfb2-4146-bf6a-63c2a735a7b2) and click on Share -> Publish.
+- `npm run dev:backend` - Start only the backend in development
+- `npm run build:backend` - Build only the backend
+- `npm run start:backend` - Start only the backend in production mode
 
-## Can I connect a custom domain to my Lovable project?
+### Database Commands
 
-Yes, you can!
+- `npm run db:setup` - Initial database setup
+- `npm run db:generate` - Generate Prisma client
+- `npm run db:push` - Push schema changes to database
+- `npm run db:seed` - Seed database with initial data
+- `npm run db:studio` - Open Prisma Studio
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🛠️ Technology Stack
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Frontend
+
+- **React** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Component library
+
+### Backend
+
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **Prisma** - Database ORM
+- **JWT** - Authentication
+- **Multer** - File uploads
+- **bcryptjs** - Password hashing
+
+## 🌟 Features
+
+- 📚 Curriculum management
+- 👥 Student enrollment
+- 📊 Progress tracking
+- 🔐 User authentication
+- 📱 Responsive design
+- 🎯 Interactive learning modules
+
+## 📁 Frontend Structure
+
+```text
+frontend/src/
+├── components/        # Reusable UI components
+├── pages/            # Page components
+├── hooks/            # Custom React hooks
+├── lib/              # Utilities and configurations
+├── assets/           # Images, icons, etc.
+└── ...
+```
+
+## 📁 Backend Structure
+
+```text
+backend/src/
+├── routes/           # API route handlers
+├── middleware/       # Custom middleware
+├── prisma/          # Database schema and migrations
+└── ...
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the ISC License.
+
+---
+
+Built with ❤️ for children's education in Kampal

@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Children's Life Skills Programme Design System
+Child-friendly colors: blue, green, orange with professional appeal
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    /* Navigation height for layout spacing */
+    --nav-height: 4rem; /* 64px = h-16 */
+
+    /* Child-friendly primary palette */
+    --primary: 210 100% 56%; /* Bright blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 100% 85%;
+    --primary-glow: 210 100% 70%;
+
+    /* Secondary green */
+    --secondary: 142 76% 36%; /* Fresh green */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 142 50% 85%;
+
+    /* Accent orange */
+    --accent: 25 95% 53%; /* Warm orange */
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 25 95% 85%;
+
+    /* Supporting colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 210 100% 56%;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(220 14% 96% / 0.5));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.06);
+    --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
+    --shadow-large: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
+    --shadow-colored: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 13% 9%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 13% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 13% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 65%;
+    --primary-foreground: 220 13% 9%;
+    --primary-light: 210 100% 85%;
+    --primary-glow: 210 100% 70%;
+
+    --secondary: 142 70% 45%;
+    --secondary-foreground: 220 13% 9%;
+    --secondary-light: 142 50% 85%;
+
+    --accent: 25 90% 60%;
+    --accent-foreground: 220 13% 9%;
+    --accent-light: 25 95% 85%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 220 13% 9%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 210 100% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    line-height: 1.6;
+  }
+
+  /* Main content container offset for sticky header */
+  .main-content {
+    padding-top: 4rem !important; /* 64px = h-16 height - force override */
+    margin-top: 0 !important;
+    /* Temporary debug background to see the offset */
+    background: linear-gradient(to right, rgba(255,0,0,0.1) 0%, rgba(255,0,0,0.1) 4rem, transparent 4rem);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .hero-text {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (min-width: 768px) {
+    .hero-text {
+      font-size: 3.75rem; /* md:text-6xl */
+    }
+  }
+
+  .section-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;
+    color: hsl(var(--primary));
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.25rem; /* md:text-4xl */
+    }
+  }
+
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    transform: translateY(-0.25rem);
+  }
+
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-primary:hover {
+    background-color: hsl(var(--primary) / 0.9);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-secondary {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-secondary:hover {
+    background-color: hsl(var(--secondary) / 0.9);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-accent {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .btn-accent:hover {
+    background-color: hsl(var(--accent) / 0.9);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .gradient-bg {
+    background: var(--gradient-hero);
+  }
+
+  .glass-effect {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    background-color: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.2);
+  }
+
+  /* Navigation specific styles */
+  .main-navigation {
+    height: var(--nav-height);
+  }
+
+  /* Dynamic image loading styles */
+  .image-loading {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-loaded {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    /* Ensure text remains readable on mobile */
+    body {
+      font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Improve touch targets */
+    button, a, input, select, textarea {
+      min-height: 44px; /* Apple's recommended minimum touch target */
+    }
+    
+    /* Better mobile form styling */
+    input, select, textarea {
+      font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Ensure cards have adequate spacing */
+    .card-hover {
+      margin-bottom: 1rem;
+    }
+    
+    /* Improve mobile navigation */
+    .main-navigation {
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Better mobile hero section */
+    .section-title {
+      font-size: 1.875rem; /* 30px */
+      line-height: 1.2;
+    }
+    
+    /* Ensure videos are responsive */
+    video {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .section-title {
+      font-size: 2.25rem; /* 36px */
+    }
+  }
+}

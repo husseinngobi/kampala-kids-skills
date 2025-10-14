@@ -27,7 +27,7 @@ interface SocialSharingProps {
 
 const SocialSharing: React.FC<SocialSharingProps> = ({
   title = "Children's Life Skills Holiday Programme | Kampala, Uganda",
-  description = "Equip your child with practical life skills, confidence, and responsibility. Enroll now for UGX 200,000!",
+  description = "Equip your child with practical life skills, confidence, and responsibility. Contact us for enrollment details!",
   url = typeof window !== 'undefined' ? window.location.href : '',
   hashtags = ['LifeSkills', 'KidsTraining', 'Kampala', 'ChildDevelopment', 'Education'],
   variant = 'buttons',

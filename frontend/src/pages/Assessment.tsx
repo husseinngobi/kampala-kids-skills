@@ -14,7 +14,6 @@ import {
   Medal,
   ArrowRight
 } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 
 const Assessment = () => {
   const assessmentCriteria = [
@@ -82,9 +81,7 @@ const Assessment = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-secondary-50 to-white">
-      <Navigation />
-      
+    <div className="min-h-screen bg-gradient-to-b from-secondary-50 to-white">      
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">Assessment & Certification</h1>

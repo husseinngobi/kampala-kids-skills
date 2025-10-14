@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChefHat, Home, Shirt, Heart, Lightbulb, DollarSign, Wrench, Scissors } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 
 const Curriculum = () => {
   const curriculumData = [
@@ -39,9 +38,7 @@ const Curriculum = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-secondary-50 to-white">
-      <Navigation />
-      
+    <div className="min-h-screen bg-gradient-to-b from-secondary-50 to-white">      
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">Curriculum & Activities</h1>

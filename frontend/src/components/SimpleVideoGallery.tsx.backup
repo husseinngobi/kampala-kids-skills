@@ -1,0 +1,357 @@
+import React, { useState, useEffectconst SimpleVideoGallery: React.FC<SimpleVideoGalleryProps> = ({
+  maxVideos = 6,
+  showFeaturedOnly = false
+}) => {
+  console.log('🎬 SimpleVideoGallery: Component rendering/mounting');
+  
+  const [videos, setVideos] = useState<Video[]>([]);Callback, useRef } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { 
+  Play, 
+  Pause, 
+  Eye,
+  Calendar,
+  AlertCircle,
+  CheckCircle,
+  Wifi,
+  WifiOff
+} from 'lucide-react';
+
+interface Video {
+  id: string;
+  title: string;
+  description: string;
+  filename: string;
+  url: string;
+  category: string;
+  views: number;
+  uploadedAt: string;
+  duration?: string;
+}
+
+interface SimpleVideoGalleryProps {
+  maxVideos?: number;
+  showFeaturedOnly?: boolean;
+}
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+const SimpleVideoGallery: React.FC<SimpleVideoGalleryProps> = ({
+  maxVideos = 10,
+  showFeaturedOnly = false
+}) => {
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const loadingRef = useRef(false);
+  const mountedRef = useRef(false);
+  const hasLoadedRef = useRef(false);
+
+  // Load videos function WITHOUT useCallback to prevent infinite loops
+  const loadVideos = async () => {
+    // Multiple protection layers against concurrent calls
+    if (loadingRef.current || hasLoadedRef.current) {
+      console.log('🛑 Already loading or loaded, skipping request');
+      return;
+    }
+    
+    try {
+      loadingRef.current = true;
+      hasLoadedRef.current = true;
+      setLoading(true);
+      setError(null);
+      
+      console.log('📹 Loading videos from API...');
+      
+      const url = showFeaturedOnly 
+        ? `${API_BASE_URL}/api/gallery/media?featured=true&limit=${maxVideos}&type=videos`
+        : `${API_BASE_URL}/api/gallery/media?limit=${maxVideos}&type=videos`;
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.success && data.data) {
+        const videoData = data.data.filter((item: { type: string }) => item.type === 'video');
+        setVideos(videoData);
+        console.log('✅ Videos loaded:', videoData.length);
+      } else {
+        throw new Error('Invalid response format');
+      }
+      
+    } catch (err) {
+      console.error('❌ Failed to load videos:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load videos');
+      setVideos([]);
+      hasLoadedRef.current = false; // Allow retry on error
+    } finally {
+      setLoading(false);
+      loadingRef.current = false;
+    }
+  };
+
+  // Load videos only once on mount
+  useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      loadVideos();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // COMPLETELY empty dependency array - run only once
+
+  // Monitor online status without triggering reloads
+  useEffect(() => {
+    const handleOnlineStatus = () => setIsOnline(navigator.onLine);
+    window.addEventListener('online', handleOnlineStatus);
+    window.addEventListener('offline', handleOnlineStatus);
+    return () => {
+      window.removeEventListener('online', handleOnlineStatus);
+      window.removeEventListener('offline', handleOnlineStatus);
+    };
+  }, []);
+
+  const handleVideoSelect = (video: Video) => {
+    setSelectedVideo(video);
+    console.log('🎥 Selected video:', video.title);
+    console.log('🔗 Video URL:', video.url);
+    console.log('🔗 Full video object:', video);
+  };
+
+  const getVideoUrl = (video: Video) => {
+    // First try the URL from the API
+    if (video.url && video.url.startsWith('http')) {
+      console.log('🎬 Using API URL:', video.url);
+      return video.url;
+    }
+    
+    // Fallback: construct URL manually with proper encoding
+    const encodedFilename = encodeURIComponent(video.filename);
+    const fallbackUrl = `${API_BASE_URL}/uploads/videos/${encodedFilename}`;
+    console.log('🎬 Using fallback URL:', fallbackUrl);
+    return fallbackUrl;
+  };
+
+  const getAlternativeVideoUrl = (video: Video) => {
+    // Try without encoding for files with spaces
+    const simpleUrl = `${API_BASE_URL}/uploads/videos/${video.filename}`;
+    console.log('🎬 Alternative URL:', simpleUrl);
+    return simpleUrl;
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
+
+  const testVideoUrl = (video: Video) => {
+    const url = getVideoUrl(video);
+    console.log('🧪 Testing video URL in new tab:', url);
+    window.open(url, '_blank');
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+        <p className="mt-2 text-gray-600">Loading videos...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <Alert className="border-red-300 bg-red-50">
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription className="text-red-700">
+          <strong>Error loading videos:</strong> {error}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={loadVideos}
+            className="ml-2"
+          >
+            Retry
+          </Button>
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Status indicator */}
+      <div className="flex items-center space-x-2 text-sm">
+        {isOnline ? (
+          <>
+            <Wifi className="w-4 h-4 text-green-600" />
+            <span className="text-green-600">Online</span>
+          </>
+        ) : (
+          <>
+            <WifiOff className="w-4 h-4 text-red-600" />
+            <span className="text-red-600">Offline</span>
+          </>
+        )}
+        <span className="text-gray-500">•</span>
+        <span className="text-gray-600">{videos.length} videos loaded</span>
+      </div>
+
+      {/* Video player */}
+      {selectedVideo && (
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>{selectedVideo.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="aspect-video bg-black rounded-lg mb-4">
+              <video
+                controls
+                className="w-full h-full"
+                poster="/placeholder.svg"
+                playsInline
+                preload="metadata"
+                onError={(e) => {
+                  console.error('❌ Video error:', e);
+                  console.error('❌ Video URL that failed:', getVideoUrl(selectedVideo));
+                  const video = e.target as HTMLVideoElement;
+                  if (video.error) {
+                    console.error('❌ Video error code:', video.error.code);
+                    console.error('❌ Video error message:', video.error.message);
+                    console.error('❌ Network state:', video.networkState);
+                    console.error('❌ Ready state:', video.readyState);
+                  }
+                  
+                  // Try alternative URL on error if not already tried
+                  const currentSrc = video.currentSrc || video.src;
+                  const altUrl = getAlternativeVideoUrl(selectedVideo);
+                  if (currentSrc !== altUrl && !currentSrc.includes(altUrl)) {
+                    console.log('🔄 Trying alternative URL:', altUrl);
+                    video.src = altUrl;
+                    video.load();
+                  }
+                }}
+                onLoadStart={() => console.log('🔄 Video loading started:', getVideoUrl(selectedVideo))}
+                onLoadedData={() => console.log('✅ Video loaded successfully:', getVideoUrl(selectedVideo))}
+                onCanPlay={() => console.log('✅ Video can play:', getVideoUrl(selectedVideo))}
+                onProgress={() => console.log('📊 Video progress update')}
+              >
+                <source src={getVideoUrl(selectedVideo)} type="video/mp4" />
+                <source src={getAlternativeVideoUrl(selectedVideo)} type="video/mp4" />
+                <source src={`${API_BASE_URL}/uploads/videos/${selectedVideo.filename.replace(/\s+/g, '%20')}`} type="video/mp4" />
+                <source src={`${API_BASE_URL}/uploads/videos/${selectedVideo.filename.replace(/\s+/g, '_')}`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p className="text-gray-600 mb-2">{selectedVideo.description}</p>
+            <div className="flex items-center space-x-4 text-sm text-gray-500">
+              <span>Category: {selectedVideo.category}</span>
+              <span>Views: {selectedVideo.views}</span>
+              <span>Uploaded: {formatDate(selectedVideo.uploadedAt)}</span>
+            </div>
+            <div className="mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => testVideoUrl(selectedVideo)}
+              >
+                Test URL in New Tab
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Video grid */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {videos.map((video) => (
+          <Card key={video.id} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex justify-between items-start">
+                <CardTitle className="text-lg line-clamp-2">{video.title}</CardTitle>
+                <Badge variant="secondary">{video.category}</Badge>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="aspect-video bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
+                <Play className="w-12 h-12 text-gray-400" />
+              </div>
+              
+              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                {video.description}
+              </p>
+              
+              <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                <div className="flex items-center space-x-1">
+                  <Eye className="w-3 h-3" />
+                  <span>{video.views}</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Calendar className="w-3 h-3" />
+                  <span>{formatDate(video.uploadedAt)}</span>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Button
+                  onClick={() => handleVideoSelect(video)}
+                  className="w-full"
+                  size="sm"
+                >
+                  <Play className="w-4 h-4 mr-2" />
+                  Play Video
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => testVideoUrl(video)}
+                  className="w-full"
+                  size="sm"
+                >
+                  Test Direct URL
+                </Button>
+              </div>
+              
+              <div className="mt-2 p-2 bg-gray-50 rounded text-xs">
+                <strong>URL:</strong> <br />
+                <code className="break-all">{video.url}</code>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {videos.length === 0 && !loading && (
+        <div className="text-center py-8">
+          <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-600 mb-2">No Videos Found</h3>
+          <p className="text-gray-500">
+            {showFeaturedOnly 
+              ? 'No featured videos available.' 
+              : 'No videos have been uploaded yet.'
+            }
+          </p>
+          <Button
+            variant="outline"
+            onClick={loadVideos}
+            className="mt-4"
+          >
+            Refresh
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default SimpleVideoGallery;

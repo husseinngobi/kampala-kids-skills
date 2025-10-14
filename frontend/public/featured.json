@@ -1,0 +1,43 @@
+{
+  "featured": [
+    {
+      "id": "house-cleaning",
+      "title": "House Cleaning Skills",
+      "description": "Children learning proper cleaning techniques, organization, and maintaining a tidy environment.",
+      "filename": "house-cleaning.mp4",
+      "thumbnail": "/placeholder.svg",
+      "category": "Cleaning",
+      "views": 245,
+      "uploadDate": "2024-11-15",
+      "duration": "3:45",
+      "isFeatured": true,
+      "staticPath": "/featured-videos/house-cleaning.mp4"
+    },
+    {
+      "id": "shoe-care",
+      "title": "Personal Care & Hygiene",
+      "description": "Teaching children proper shoe care and personal hygiene habits for confidence and self-respect.",
+      "filename": "shoe-care.mp4",
+      "thumbnail": "/placeholder.svg",
+      "category": "Personal Care",
+      "views": 189,
+      "uploadDate": "2024-11-12",
+      "duration": "2:30",
+      "isFeatured": true,
+      "staticPath": "/featured-videos/shoe-care.mp4"
+    },
+    {
+      "id": "pet-care",
+      "title": "Pet & Plant Care",
+      "description": "Building responsibility and empathy through caring for pets and nurturing living things.",
+      "filename": "pet-care.mp4",
+      "thumbnail": "/placeholder.svg",
+      "category": "Life Skills",
+      "views": 167,
+      "uploadDate": "2024-11-10",
+      "duration": "4:20",
+      "isFeatured": true,
+      "staticPath": "/featured-videos/pet-care.mp4"
+    }
+  ]
+}

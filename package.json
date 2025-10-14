@@ -22,7 +22,12 @@
     "db:generate": "powershell -Command \"Set-Location backend; npm run db:generate\"",
     "db:push": "powershell -Command \"Set-Location backend; npm run db:push\"",
     "db:seed": "powershell -Command \"Set-Location backend; npm run db:seed\"",
-    "db:studio": "powershell -Command \"Set-Location backend; npm run db:studio\""
+    "db:studio": "powershell -Command \"Set-Location backend; npm run db:studio\"",
+    "health-check": "node health-check.js",
+    "test": "npm run health-check"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

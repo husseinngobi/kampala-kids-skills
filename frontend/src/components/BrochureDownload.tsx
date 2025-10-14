@@ -42,15 +42,15 @@ Urban children in Kampala often grow up in busy households where parents have li
 PROGRAMME LEVELS:
 
 🔵 BASIC LEVEL (Ages 8-11)
-Duration: 4 days | Fee: UGX 200,000 | Max: 15 learners
+Duration: 4 days | Contact for pricing | Max: 15 learners
 Skills: Basic cooking, bed making, plant care, personal hygiene, simple cleaning
 
 🔵 INTERMEDIATE LEVEL (Ages 12-14)  
-Duration: 4 days | Fee: UGX 200,000 | Max: 15 learners
+Duration: 4 days | Contact for pricing | Max: 15 learners
 Skills: Dish washing, meal preparation, laundry basics, pet care, leadership basics
 
 🔵 ADVANCED LEVEL (Ages 15-17)
-Duration: 4 days | Fee: UGX 200,000 | Max: 15 learners
+Duration: 4 days | Contact for pricing | Max: 15 learners
 Skills: Deep cleaning, full meal cooking, financial literacy, DIY projects, beauty & grooming
 
 SKILL AREAS COVERED:
@@ -87,15 +87,15 @@ WHAT'S INCLUDED:
 ✓ Take-home resources and guides
 
 CONTACT INFORMATION:
-📞 Phone: +256 754 723 614
+📞 Phone: +256 782 022899 / +256 758 709980
 📧 Email: info@lifeskillsprogramme.ug
 📍 Location: Kampala, Uganda
 🌐 Website: [Your Website URL]
-💬 WhatsApp: +256 754 723 614
+💬 WhatsApp: +256 782 022899
 
 ENROLLMENT:
 1. Complete enrollment form
-2. Pay programme fee (UGX 200,000)
+2. Receive pricing and payment details
 3. Attend opening session
 4. Begin your child's transformation!
 
@@ -220,7 +220,7 @@ Empowering the next generation with essential life skills.
       <CardContent>
         <p className="text-gray-600 mb-6">
           Download our comprehensive programme brochure with all details about levels, 
-          curriculum, fees, and enrollment information.
+          curriculum, and enrollment information.
         </p>
 
         {/* Brochure Highlights */}
@@ -235,7 +235,7 @@ Empowering the next generation with essential life skills.
           </div>
           <div className="flex items-center space-x-2 text-sm">
             <DollarSign className="w-4 h-4 text-accent" />
-            <span>Fees & Payment</span>
+            <span>Pricing Information</span>
           </div>
           <div className="flex items-center space-x-2 text-sm">
             <Users className="w-4 h-4 text-primary" />

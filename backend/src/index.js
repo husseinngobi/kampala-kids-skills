@@ -11,9 +11,12 @@ import { fileURLToPath } from 'url';
 import enrollmentRoutes from './routes/enrollments.js';
 import videoRoutes from './routes/videos.js';
 import contactRoutes from './routes/contact.js';
-import adminRoutes from './routes/admin.js';
 import publicRoutes from './routes/public.js';
 import galleryRoutes from './routes/gallery.js';
+import gallerySimpleRoutes from './routes/gallery-simple.js';
+import gallerySupabaseRoutes from './routes/gallery-supabase.js'; // New Supabase-powered gallery
+import settingsRoutes from './routes/settings.js';
+// Note: Admin routes removed - functionality moved to Supabase Dashboard
 
 // Middleware imports
 import { errorHandler } from './middleware/errorHandler.js';
@@ -34,10 +37,10 @@ const PORT = process.env.PORT || 5000;
 // Initialize Prisma Client
 export const prisma = new PrismaClient();
 
-// Rate limiting
+// Rate limiting - more permissive during development
 const limiter = rateLimit({
-  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW) * 60 * 1000 || 15 * 60 * 1000, // 15 minutes
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // limit each IP to 100 requests per windowMs
+  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW) * 60 * 1000 || 5 * 60 * 1000, // 5 minutes
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 500, // limit each IP to 500 requests per windowMs
   message: {
     error: 'Too many requests from this IP, please try again later.',
   },
@@ -72,19 +75,32 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Request logging
 app.use(requestLogger);
 
-// Apply rate limiting to all requests
-app.use(limiter);
-
-// Serve uploaded files with proper headers for mobile compatibility
+// Serve uploaded files BEFORE rate limiting (videos/images should not be rate limited)
 app.use('/uploads', (req, res, next) => {
   // Add mobile-friendly headers
   res.set({
     'Cache-Control': 'public, max-age=31536000', // Cache for 1 year
     'Access-Control-Allow-Origin': '*',
-    'Cross-Origin-Resource-Policy': 'cross-origin'
+    'Cross-Origin-Resource-Policy': 'cross-origin',
+    'Accept-Ranges': 'bytes' // Enable range requests for video streaming
   });
+  
+  // Set proper content type for video files
+  if (req.path.includes('/videos/')) {
+    res.set('Content-Type', 'video/mp4');
+  }
+  
   next();
 }, express.static(path.join(process.cwd(), 'uploads')));
+
+// Apply rate limiting to API routes only (after static files) - but EXCLUDE gallery routes
+app.use('/api', (req, res, next) => {
+  // Skip rate limiting for gallery endpoints temporarily
+  if (req.path.includes('/gallery') || req.path.includes('/media')) {
+    return next();
+  }
+  return limiter(req, res, next);
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -98,19 +114,14 @@ app.get('/health', (req, res) => {
 
 // API Routes
 app.use('/api/public', publicRoutes);
-app.use('/api/gallery', galleryRoutes);
+app.use('/api/gallery', gallerySupabaseRoutes); // Now using Supabase-powered gallery!
 app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/contact', contactRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/api/settings', settingsRoutes);
 
-// Serve admin dashboard static files (we'll create this later)
-app.use('/admin', express.static(path.join(__dirname, '../admin-dashboard')));
-
-// Catch-all for admin dashboard SPA
-app.get('/admin/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../admin-dashboard/index.html'));
-});
+// Note: Admin functionality moved to Supabase Dashboard
+// No more conflicting admin routes or static file serving
 
 // 404 handler
 app.use('*', (req, res) => {

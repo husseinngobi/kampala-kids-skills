@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Phone, Mail, MapPin, MessageCircle, Download, Clock, Users } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 import QRCodeGenerator from '@/components/QRCodeGenerator';
 
 const Contact = () => {
@@ -38,15 +37,21 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
-      title: "Phone",
-      content: "+256 754 723 614",
-      action: "tel:+256754723614"
+      title: "Phone (Primary)",
+      content: "+256 782 022899",
+      action: "tel:+256782022899"
+    },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Phone (Secondary)",
+      content: "+256 758 709980",
+      action: "tel:+256758709980"
     },
     {
       icon: <MessageCircle className="w-6 h-6" />,
       title: "WhatsApp", 
-      content: "+256 754 723 614",
-      action: "https://wa.me/256754723614"
+      content: "+256 782 022899",
+      action: "https://wa.me/256782022899"
     },
     {
       icon: <Mail className="w-6 h-6" />,
@@ -72,10 +77,9 @@ const Contact = () => {
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white">
       <SEO 
         title="Contact Us | Children's Life Skills Programme Kampala"
-        description="Get in touch with us to enroll your child or learn more about our life skills programme. Phone: +256 754 723 614 | Email: info@lifeskillsprogramme.ug | Kampala, Uganda"
+        description="Get in touch with us to enroll your child or learn more about our life skills programme. Phone: +256 782 022899 | Email: info@lifeskillsprogramme.ug | Kampala, Uganda"
         keywords="contact children programme Kampala, life skills programme phone number, enroll child life skills Uganda, children training contact details Kampala"
       />
-      <Navigation />
       
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
@@ -196,7 +200,7 @@ const Contact = () => {
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button asChild variant="outline" size="lg" className="w-full">
-                  <a href="https://wa.me/256754723614?text=Hi! I'm interested in the Children's Life Skills Programme. Can you provide more information?" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/256782022899?text=Hi! I'm interested in the Children's Life Skills Programme. Can you provide more information?" target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     WhatsApp Us
                   </a>
@@ -247,7 +251,7 @@ const Contact = () => {
               <CardContent className="p-6">
                 <h3 className="font-semibold text-lg mb-2 text-primary">Are meals included?</h3>
                 <p className="text-gray-600 text-sm">
-                  Yes! Nutritious meals and snacks are included in the programme fee. We also teach children how to prepare healthy meals.
+                  Yes! Nutritious meals and snacks are included in the programme. We also teach children how to prepare healthy meals.
                 </p>
               </CardContent>
             </Card>
@@ -274,7 +278,7 @@ const Contact = () => {
         <section className="mt-12">
           <SocialSharing 
             title="Contact Children's Life Skills Programme | Kampala"
-            description="Get in touch to enroll your child in our life skills programme. Phone: +256 754 723 614 | Kampala, Uganda"
+            description="Get in touch to enroll your child in our life skills programme. Phone: +256 782 022899 | Kampala, Uganda"
             hashtags={['Contact', 'LifeSkills', 'Kampala', 'Enroll', 'Children']}
             variant="compact"
             className="text-center"

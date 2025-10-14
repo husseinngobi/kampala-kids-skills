@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        video { width: 100%; max-width: 800px; margin: 10px 0; }
+        .test-section { border: 1px solid #ccc; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Video Playback Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Direct URL with Spaces (Raw)</h2>
+        <p>URL: http://localhost:5000/uploads/videos/Car Cleaning.mp4</p>
+        <video controls>
+            <source src="http://localhost:5000/uploads/videos/Car Cleaning.mp4" type="video/mp4">
+            Video not supported
+        </video>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: URL Encoded Spaces</h2>
+        <p>URL: http://localhost:5000/uploads/videos/Car%20Cleaning.mp4</p>
+        <video controls>
+            <source src="http://localhost:5000/uploads/videos/Car%20Cleaning.mp4" type="video/mp4">
+            Video not supported
+        </video>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: House Cleaning Video (No spaces)</h2>
+        <p>URL: http://localhost:5000/uploads/videos/house-cleaning.mp4</p>
+        <video controls>
+            <source src="http://localhost:5000/uploads/videos/house-cleaning.mp4" type="video/mp4">
+            Video not supported
+        </video>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 4: API Response Test</h2>
+        <button onclick="testAPI()">Test API</button>
+        <div id="apiResult"></div>
+    </div>
+    
+    <script>
+        async function testAPI() {
+            try {
+                const response = await fetch('http://localhost:5000/api/gallery/media?type=videos&limit=3');
+                const data = await response.json();
+                
+                const resultDiv = document.getElementById('apiResult');
+                resultDiv.innerHTML = '<h3>API Response:</h3>';
+                
+                data.data.forEach((video, index) => {
+                    resultDiv.innerHTML += `
+                        <div style="border: 1px solid #eee; padding: 10px; margin: 10px 0;">
+                            <h4>${video.title}</h4>
+                            <p><strong>URL:</strong> ${video.url}</p>
+                            <video controls style="width: 100%; max-width: 400px;">
+                                <source src="${video.url}" type="video/mp4">
+                                Video not supported
+                            </video>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                document.getElementById('apiResult').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Add error logging for videos
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', (e) => {
+                console.error('Video error:', e);
+                console.error('Video src:', video.currentSrc);
+                const errorDiv = document.createElement('div');
+                errorDiv.style.color = 'red';
+                errorDiv.textContent = `Video Error: ${e.target.error?.code} - ${e.target.error?.message}`;
+                video.parentNode.appendChild(errorDiv);
+            });
+            
+            video.addEventListener('loadstart', () => {
+                console.log('Video loading started:', video.currentSrc);
+            });
+            
+            video.addEventListener('canplay', () => {
+                console.log('Video can play:', video.currentSrc);
+            });
+        });
+    </script>
+</body>
+</html>

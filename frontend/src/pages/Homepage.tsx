@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Hero from '@/components/Hero';
-import VideoGallery from '@/components/VideoGallery';
+// import TempVideoGalleryBlock from '@/components/TempVideoGalleryBlock'; // Replaced with SafeVideoGallery
+import SafeVideoGallery from '@/components/SafeVideoGallery';
 import SocialSharing from '@/components/SocialSharing';
 import SEO from '@/components/SEO';
+import Watermark from '@/components/Watermark';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -30,29 +32,8 @@ import {
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const Homepage = () => {
-  const [featuredImage, setFeaturedImage] = useState('/placeholder.svg');
-  const [loading, setLoading] = useState(true);
-
-  // Fetch featured image for homepage
-  useEffect(() => {
-    const fetchFeaturedImage = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/gallery/media?category=TABLE_SETTING&limit=1`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.data && data.data.length > 0) {
-            setFeaturedImage(data.data[0].url);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching featured image:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchFeaturedImage();
-  }, []);
+  // Enhanced video gallery with proper rate limiting and error handling
+  
   const skillPrograms = [
     { icon: ChefHat, title: 'Culinary Skills', description: 'Cooking, meal planning, nutrition basics' },
     { icon: Home, title: 'House Cleaning', description: 'Organization, maintenance, hygiene' },
@@ -89,9 +70,12 @@ const Homepage = () => {
     <div>
       <SEO 
         title="Children's Life Skills Holiday Programme | Kampala, Uganda"
-        description="Equip your child with practical life skills, confidence, and responsibility through our structured holiday programme in Kampala. Cooking, cleaning, leadership & more. Ages 8-17. Enroll for UGX 200,000!"
+        description="Equip your child with practical life skills, confidence, and responsibility through our structured holiday programme in Kampala. Cooking, cleaning, leadership & more. Ages 8-17. Contact us for enrollment details!"
         keywords="children life skills Kampala, holiday programme Uganda, kids cooking classes, leadership training children, practical skills development, confidence building kids, children education Kampala, life skills training Uganda"
       />
+
+      {/* Watermark */}
+      <Watermark page="home" />
 
       {/* Hero Section */}
       <Hero />
@@ -106,11 +90,14 @@ const Homepage = () => {
             </p>
           </div>
           
-          <VideoGallery 
-            showUploadButton={false}
+          
+          <SafeVideoGallery 
+            maxVideos={3}
+            showFeatured={true}
+            autoPlay={false}
+            className="mb-16"
           />
-
-          <div className="text-center mt-12">
+                    <div className="text-center mt-12">
             <p className="text-lg text-muted-foreground mb-6">
               These are just a few examples of the hands-on skills your child will master in our programme.
             </p>
@@ -168,9 +155,9 @@ const Homepage = () => {
 
             <div>
               <img 
-                src={featuredImage} 
+                src="/src/assets/children-dining.jpg" 
                 alt="Children learning proper table setting and dining etiquette"
-                className={`w-full rounded-2xl shadow-2xl ${loading ? 'image-loading' : 'image-loaded'}`}
+                className="w-full rounded-2xl shadow-2xl"
               />
             </div>
           </div>
@@ -271,7 +258,7 @@ const Homepage = () => {
                   </div>
 
                   <div className="text-center mt-6 pt-6 border-t border-border">
-                    <p className="text-2xl font-bold text-primary mb-2">UGX 200,000</p>
+                    <p className="text-lg font-bold text-primary mb-2">Contact us for pricing</p>
                     <p className="text-sm text-muted-foreground">Complete 12-day programme</p>
                   </div>
                 </CardContent>
@@ -337,11 +324,11 @@ const Homepage = () => {
           <div className="mt-8 flex items-center justify-center space-x-6 text-white/80">
             <div className="flex items-center space-x-2">
               <Phone className="w-5 h-5" />
-              <span>+256 XXX XXX XXX</span>
+              <span>+256 782 022899</span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="w-5 h-5" />
-              <span>info@childlifeskills.org</span>
+              <span>info@lifeskillsprogramme.ug</span>
             </div>
           </div>
         </div>
@@ -352,7 +339,7 @@ const Homepage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SocialSharing 
             title="Children's Life Skills Holiday Programme | Kampala"
-            description="Give your child practical life skills, confidence & responsibility. 4-day programme for ages 8-17. Enroll for UGX 200,000!"
+            description="Give your child practical life skills, confidence & responsibility. 4-day programme for ages 8-17. Contact us for enrollment details!"
             hashtags={['LifeSkills', 'KidsTraining', 'Kampala', 'ChildDevelopment', 'Education', 'Uganda']}
           />
         </div>

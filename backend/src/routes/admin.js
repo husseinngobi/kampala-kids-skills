@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import path from 'path';
 import { body, validationResult } from 'express-validator';
 import { prisma } from '../index.js';
 import { authenticateToken, requireAdmin } from '../middleware/auth.js';
@@ -810,6 +811,69 @@ router.put('/videos/:id', authenticateToken, requireAdmin, [
   }
 });
 
+// Toggle featured status (dedicated endpoint for quick toggle)
+router.patch('/videos/:id/featured', authenticateToken, requireAdmin, [
+  body('isFeatured').isBoolean().withMessage('isFeatured must be a boolean')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
+      });
+    }
+
+    const { isFeatured } = req.body;
+
+    // Check if video exists
+    const existingVideo = await prisma.video.findUnique({
+      where: { id: req.params.id }
+    });
+
+    if (!existingVideo) {
+      return res.status(404).json({
+        success: false,
+        message: 'Video not found'
+      });
+    }
+
+    // Update only the featured status
+    const updatedVideo = await prisma.video.update({
+      where: { id: req.params.id },
+      data: {
+        isFeatured,
+        updatedAt: new Date()
+      },
+      include: {
+        uploader: {
+          select: { id: true, firstName: true, lastName: true, email: true }
+        }
+      }
+    });
+
+    const videoWithUrl = {
+      ...updatedVideo,
+      url: `/uploads/videos/${updatedVideo.filename}`,
+      thumbnailUrl: `/uploads/thumbnails/${updatedVideo.filename.replace(/\.[^/.]+$/, '.jpg')}`
+    };
+
+    res.json({
+      success: true,
+      message: 'Featured status updated successfully',
+      data: videoWithUrl
+    });
+  } catch (error) {
+    console.error('Error toggling featured status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update featured status',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
 // Delete video (soft delete by default)
 router.delete('/videos/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
@@ -1285,6 +1349,445 @@ router.post('/images/upload', authenticateToken, requireAdmin, uploadImage, [
     res.status(500).json({
       success: false,
       message: 'Failed to upload image',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// Get single image by ID
+router.get('/images/:id', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const image = await prisma.image.findUnique({
+      where: { id },
+      include: {
+        uploader: {
+          select: { email: true, firstName: true, lastName: true }
+        }
+      }
+    });
+
+    if (!image) {
+      return res.status(404).json({
+        success: false,
+        message: 'Image not found'
+      });
+    }
+
+    // Add full URL
+    const imageWithUrl = {
+      ...image,
+      url: `/uploads/images/${image.filename}`
+    };
+
+    res.json({
+      success: true,
+      data: imageWithUrl
+    });
+
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch image',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// Update image
+router.patch('/images/:id', authenticateToken, requireAdmin, [
+  body('title').optional().trim().isLength({ min: 1 }).withMessage('Title cannot be empty'),
+  body('description').optional().trim(),
+  body('category').optional().isIn(['ACTIVITIES', 'LEARNING', 'DINING', 'TABLE_SETTING', 'FACILITIES', 'GENERAL']).withMessage('Invalid category'),
+  body('isPublic').optional().isBoolean().withMessage('isPublic must be a boolean'),
+  body('isFeatured').optional().isBoolean().withMessage('isFeatured must be a boolean'),
+  body('featured').optional().isBoolean().withMessage('featured must be a boolean') // Support both naming conventions
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
+      });
+    }
+
+    const { id } = req.params;
+    const updateData = { ...req.body };
+
+    // Handle both 'featured' and 'isFeatured' for consistency
+    if ('featured' in updateData) {
+      updateData.isFeatured = updateData.featured;
+      delete updateData.featured;
+    }
+
+    const image = await prisma.image.update({
+      where: { id },
+      data: updateData,
+      include: {
+        uploader: {
+          select: { email: true, firstName: true, lastName: true }
+        }
+      }
+    });
+
+    // Add full URL
+    const imageWithUrl = {
+      ...image,
+      url: `/uploads/images/${image.filename}`
+    };
+
+    res.json({
+      success: true,
+      data: imageWithUrl,
+      message: 'Image updated successfully'
+    });
+
+  } catch (error) {
+    if (error.code === 'P2025') {
+      return res.status(404).json({
+        success: false,
+        message: 'Image not found'
+      });
+    }
+
+    console.error('Error updating image:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update image',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// Delete image
+router.delete('/images/:id', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // First get the image to find the file path
+    const image = await prisma.image.findUnique({
+      where: { id }
+    });
+
+    if (!image) {
+      return res.status(404).json({
+        success: false,
+        message: 'Image not found'
+      });
+    }
+
+    // Delete the image record from database
+    await prisma.image.delete({
+      where: { id }
+    });
+
+    // Delete the file from filesystem
+    try {
+      const fs = await import('fs/promises');
+      const filePath = path.join(process.cwd(), 'uploads', 'images', image.filename);
+      await fs.unlink(filePath);
+    } catch (fileError) {
+      console.warn('Error deleting image file:', fileError);
+      // Continue even if file deletion fails
+    }
+
+    res.json({
+      success: true,
+      message: 'Image deleted successfully'
+    });
+
+  } catch (error) {
+    if (error.code === 'P2025') {
+      return res.status(404).json({
+        success: false,
+        message: 'Image not found'
+      });
+    }
+
+    console.error('Error deleting image:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to delete image',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// =============================================
+// VIDEO MANAGEMENT ENDPOINTS FOR FEATURED VIDEOS
+// =============================================
+
+import fs from 'fs/promises';
+import fsSync from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Helper function to read featured.json
+const readFeaturedVideos = async () => {
+  try {
+    const featuredPath = path.join(__dirname, '../../../frontend/public/featured.json');
+    const data = await fs.readFile(featuredPath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading featured.json:', error);
+    return { featured: [] };
+  }
+};
+
+// Helper function to write featured.json
+const writeFeaturedVideos = async (featuredData) => {
+  try {
+    const featuredPath = path.join(__dirname, '../../../frontend/public/featured.json');
+    await fs.writeFile(featuredPath, JSON.stringify(featuredData, null, 2));
+    return true;
+  } catch (error) {
+    console.error('Error writing featured.json:', error);
+    return false;
+  }
+};
+
+// Helper function to copy video to featured folder
+const copyVideoToFeatured = async (filename) => {
+  try {
+    const sourcePath = path.join(__dirname, '../uploads/videos', filename);
+    const destPath = path.join(__dirname, '../../../frontend/public/featured-videos', filename);
+    
+    // Ensure featured-videos directory exists
+    const featuredDir = path.dirname(destPath);
+    if (!fsSync.existsSync(featuredDir)) {
+      await fs.mkdir(featuredDir, { recursive: true });
+    }
+    
+    // Copy the file
+    await fs.copyFile(sourcePath, destPath);
+    console.log(`✅ Video copied to featured: ${filename}`);
+    return true;
+  } catch (error) {
+    console.error('❌ Error copying video to featured:', error);
+    return false;
+  }
+};
+
+// Helper function to remove video from featured folder
+const removeVideoFromFeatured = async (filename) => {
+  try {
+    const destPath = path.join(__dirname, '../../../frontend/public/featured-videos', filename);
+    
+    if (fsSync.existsSync(destPath)) {
+      await fs.unlink(destPath);
+      console.log(`✅ Video removed from featured: ${filename}`);
+    }
+    return true;
+  } catch (error) {
+    console.error('❌ Error removing video from featured:', error);
+    return false;
+  }
+};
+
+// Helper function to get video info from database
+const getVideoFromDatabase = async (videoId) => {
+  try {
+    const video = await prisma.video.findUnique({
+      where: { id: videoId }
+    });
+    return video;
+  } catch (error) {
+    console.error('Error getting video from database:', error);
+    return null;
+  }
+};
+
+// POST /api/admin/videos/:id/make-featured
+// Copy a video to the featured videos folder
+router.post('/videos/:id/make-featured', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const videoId = req.params.id;
+    console.log(`📝 Making video featured: ${videoId}`);
+    
+    // Get video info from database
+    const video = await getVideoFromDatabase(videoId);
+    if (!video) {
+      return res.status(404).json({
+        success: false,
+        message: 'Video not found'
+      });
+    }
+    
+    // Copy video to featured folder
+    const copied = await copyVideoToFeatured(video.filename);
+    if (!copied) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to copy video to featured folder'
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: 'Video copied to featured folder',
+      filename: video.filename
+    });
+    
+  } catch (error) {
+    console.error('❌ Make featured error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to make video featured',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// POST /api/admin/featured-videos
+// Add or remove videos from featured.json manifest
+router.post('/featured-videos', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const { action, video, videoId } = req.body;
+    console.log(`📝 Featured videos action: ${action}`);
+    
+    // Read current featured videos
+    const featuredData = await readFeaturedVideos();
+    
+    if (action === 'add') {
+      // Limit to 3 featured videos
+      if (featuredData.featured.length >= 3) {
+        return res.status(400).json({
+          success: false,
+          message: 'Maximum of 3 featured videos allowed'
+        });
+      }
+      
+      // Check if already featured
+      const exists = featuredData.featured.find(fv => fv.id === video.id);
+      if (exists) {
+        return res.status(400).json({
+          success: false,
+          message: 'Video is already featured'
+        });
+      }
+      
+      // Add to featured
+      featuredData.featured.push({
+        id: video.id,
+        title: video.title,
+        description: video.description,
+        filename: video.filename,
+        thumbnail: video.thumbnail || '/placeholder.svg',
+        category: video.category,
+        views: video.views || 0,
+        uploadDate: video.uploadDate || new Date().toISOString(),
+        duration: video.duration || '0:00',
+        isFeatured: true,
+        staticPath: `/featured-videos/${video.filename}`
+      });
+      
+    } else if (action === 'remove') {
+      // Remove from featured
+      const index = featuredData.featured.findIndex(fv => fv.id === videoId);
+      if (index === -1) {
+        return res.status(404).json({
+          success: false,
+          message: 'Video not found in featured list'
+        });
+      }
+      
+      const removedVideo = featuredData.featured[index];
+      featuredData.featured.splice(index, 1);
+      
+      // Remove physical file from featured folder
+      await removeVideoFromFeatured(removedVideo.filename);
+    }
+    
+    // Save updated featured.json
+    const saved = await writeFeaturedVideos(featuredData);
+    if (!saved) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to update featured videos list'
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: `Video ${action}ed successfully`,
+      featured: featuredData.featured
+    });
+    
+  } catch (error) {
+    console.error('❌ Featured videos management error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to manage featured videos',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// GET /api/admin/featured-videos
+// Get current featured videos list
+router.get('/featured-videos', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const featuredData = await readFeaturedVideos();
+    
+    res.json({
+      success: true,
+      data: featuredData.featured
+    });
+    
+  } catch (error) {
+    console.error('❌ Get featured videos error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get featured videos',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// GET /api/admin/videos/status
+// Get status of all videos (featured vs gallery)
+router.get('/videos/status', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const featuredData = await readFeaturedVideos();
+    
+    // Get all videos from database
+    const videos = await prisma.video.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    
+    const videoStatus = videos.map(video => ({
+      id: video.id,
+      title: video.title,
+      filename: video.filename,
+      size: video.fileSize,
+      uploadedAt: video.createdAt,
+      isFeatured: featuredData.featured.some(fv => fv.id === video.id),
+      category: video.category,
+      views: video.views
+    }));
+    
+    res.json({
+      success: true,
+      data: {
+        total: videoStatus.length,
+        featured: featuredData.featured.length,
+        gallery: videoStatus.length - featuredData.featured.length,
+        videos: videoStatus
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Get video status error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get video status',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }

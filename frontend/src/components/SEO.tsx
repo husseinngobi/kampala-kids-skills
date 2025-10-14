@@ -12,15 +12,15 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = "Children's Life Skills Holiday Programme | Kampala, Uganda",
-  description = "Equip your child with practical life skills, confidence, and responsibility through our structured holiday programme in Kampala. Cooking, cleaning, leadership & more. Enroll today!",
-  keywords = "children life skills, holiday programme Kampala, kids training Uganda, cooking classes children, leadership skills, practical skills, confidence building, responsibility, children development Kampala",
-  image = "/assets/children-learning-1.jpg",
-  url = typeof window !== 'undefined' ? window.location.href : '',
+  title = "Kampala Kids Life Skills Programme | Holiday Training for Children",
+  description = "Empower your child with essential life skills through our comprehensive holiday programme in Kampala. Professional training in cooking, cleaning, leadership, financial literacy & more. Ages 6-17. Enroll now!",
+  keywords = "Kampala kids life skills, children holiday programme Uganda, practical skills training, cooking classes children Kampala, leadership development kids, responsibility training, confidence building children, life skills education Uganda, holiday activities Kampala, children development programme",
+  image = "/src/assets/children-learning-1.jpg",
+  url = typeof window !== 'undefined' ? window.location.href : 'https://kampala-kids-skills.com',
   type = "website",
   children
 }) => {
-  const siteName = "Children's Life Skills Programme";
+  const siteName = "Kampala Kids Life Skills Programme";
   const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
   return (
@@ -62,37 +62,31 @@ const SEO: React.FC<SEOProps> = ({
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "EducationalOrganization",
-          "name": "Children's Life Skills Holiday Programme",
+          "name": "Kampala Kids Life Skills Programme",
           "description": description,
           "url": url,
-          "logo": "/assets/life-skills-logo.jpeg",
+          "logo": "/src/assets/life-skills-logo.png",
           "image": image,
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Kampala",
+            "addressRegion": "Central Region",
             "addressCountry": "Uganda"
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+256754723614",
+            "telephone": "+256 XX XXX XXXX",
             "contactType": "customer service",
-            "availableLanguage": "English"
+            "availableLanguage": ["English", "Luganda"],
+            "areaServed": "UG"
           },
-          "sameAs": [
-            // Add social media URLs when available
-          ],
-          "offers": {
-            "@type": "Offer",
-            "name": "Life Skills Holiday Programme",
-            "description": "4-day intensive life skills training for children aged 8-17",
-            "price": "200000",
-            "priceCurrency": "UGX",
-            "availability": "https://schema.org/InStock"
-          },
-          "areaServed": {
+          "serviceArea": {
             "@type": "City",
             "name": "Kampala"
-          }
+          },
+          "foundingDate": "2023",
+          "numberOfStudents": "500+",
+          "slogan": "Building Confidence, Responsibility & Life Skills"
         })}
       </script>
 
@@ -101,35 +95,91 @@ const SEO: React.FC<SEOProps> = ({
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Course",
-          "name": "Children's Life Skills Holiday Programme",
-          "description": "Comprehensive life skills training programme for children aged 8-17, covering cooking, cleaning, personal care, leadership, and financial literacy.",
+          "name": "Kampala Kids Life Skills Holiday Programme",
+          "description": "Comprehensive life skills training programme for children aged 6-17, covering cooking, cleaning, personal care, leadership, financial literacy, and practical DIY skills.",
           "provider": {
             "@type": "EducationalOrganization",
-            "name": "Children's Life Skills Programme",
+            "name": "Kampala Kids Life Skills Programme",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Kampala",
+              "addressRegion": "Central Region",
               "addressCountry": "Uganda"
             }
           },
           "offers": {
             "@type": "Offer",
-            "price": "200000",
-            "priceCurrency": "UGX",
-            "availability": "https://schema.org/InStock"
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2023-01-01",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "Contact for pricing",
+              "priceCurrency": "UGX"
+            }
           },
-          "courseMode": "offline",
-          "educationalLevel": "Beginner to Advanced",
+          "courseMode": ["offline", "hands-on"],
+          "educationalLevel": ["Beginner", "Intermediate", "Advanced"],
           "timeRequired": "P4D",
-          "inLanguage": "en",
-          "coursePrerequisites": "None - Age-appropriate levels available",
+          "inLanguage": ["en", "lg"],
+          "coursePrerequisites": "None - Age-appropriate levels available (6-17 years)",
           "teaches": [
-            "Culinary Skills",
-            "House Cleaning",
-            "Personal Care",
-            "Leadership Skills",
-            "Financial Literacy",
-            "DIY Skills"
+            "Culinary Skills & Nutrition",
+            "House Cleaning & Organization",
+            "Personal Care & Hygiene",
+            "Leadership & Communication",
+            "Financial Literacy & Budgeting",
+            "DIY & Maker Skills",
+            "Study Skills & Time Management",
+            "Ethics & Social Responsibility"
+          ],
+          "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student",
+            "audienceType": "children",
+            "suggestedMinAge": 6,
+            "suggestedMaxAge": 17
+          }
+        })}
+      </script>
+
+      {/* FAQ Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What age groups do you cater to?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We welcome children aged 6-17 years with age-appropriate skill levels and activities designed for different developmental stages."
+              }
+            },
+            {
+              "@type": "Question", 
+              "name": "What skills do children learn?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our programme covers culinary skills, house cleaning, personal care, leadership, financial literacy, DIY skills, study skills, and social responsibility."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long is the programme?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our standard holiday programme runs for 4 intensive days, with weekend classes and private tutoring also available."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where are you located?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We are based in Kampala, Uganda, serving families throughout the Central Region with convenient locations and flexible scheduling."
+              }
+            }
           ]
         })}
       </script>

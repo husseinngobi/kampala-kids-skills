@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CheckCircle, FileText, CreditCard, UserCheck } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 
 const Enrolment = () => {
   const [formData, setFormData] = useState({
@@ -38,14 +37,12 @@ const Enrolment = () => {
 
   const steps = [
     { icon: <FileText className="w-6 h-6" />, title: "Complete Form", description: "Fill in child and parent details" },
-    { icon: <CreditCard className="w-6 h-6" />, title: "Make Payment", description: "Pay UGX 200,000 programme fee" },
-    { icon: <UserCheck className="w-6 h-6" />, title: "Confirmation", description: "Receive enrollment confirmation" }
+    { icon: <CreditCard className="w-6 h-6" />, title: "Receive Quote", description: "Get pricing and payment details" },
+    { icon: <UserCheck className="w-6 h-6" />, title: "Confirmation", description: "Complete enrollment process" }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-accent-50 to-white">
-      <Navigation />
-      
+    <div className="min-h-screen bg-gradient-to-b from-accent-50 to-white">      
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4">Enroll Your Child</h1>
@@ -198,15 +195,15 @@ const Enrolment = () => {
                 />
               </div>
 
-              {/* Programme Fee Information */}
+              {/* Programme Information */}
               <Card className="bg-primary-50">
                 <CardContent className="p-4">
-                  <h4 className="font-semibold text-primary mb-2">Programme Fee</h4>
+                  <h4 className="font-semibold text-primary mb-2">Programme Information</h4>
                   <p className="text-gray-700 mb-2">
-                    <span className="font-bold text-2xl text-primary">UGX 200,000</span> for complete 4-day programme
+                    <span className="font-bold text-lg text-primary">Complete 4-day programme</span>
                   </p>
                   <p className="text-sm text-gray-600">
-                    Fee covers all materials, meals, and certification. Payment details will be provided after form submission.
+                    Includes all materials, meals, and certification. Pricing and payment details will be provided after form submission.
                   </p>
                 </CardContent>
               </Card>
@@ -225,8 +222,8 @@ const Enrolment = () => {
             Questions about enrollment? Contact us for assistance.
           </p>
           <Button variant="outline" size="lg">
-            <a href="https://wa.me/256754723614" target="_blank" rel="noopener noreferrer">
-              WhatsApp Us: +256 754 723 614
+            <a href="https://wa.me/256782022899" target="_blank" rel="noopener noreferrer">
+              WhatsApp Us: +256 782 022899
             </a>
           </Button>
         </div>

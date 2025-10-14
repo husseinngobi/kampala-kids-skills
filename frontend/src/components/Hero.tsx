@@ -8,27 +8,20 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000
 
 const Hero = () => {
   const [heroImage, setHeroImage] = useState('/placeholder.svg');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // No need to load since we're using static image
 
   useEffect(() => {
-    const fetchHeroImage = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/gallery/media?category=LEARNING&limit=1`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.data && data.data.length > 0) {
-            // Use the first learning image as hero background - API now returns absolute URLs
-            setHeroImage(data.data[0].url);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching hero image:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchHeroImage();
+    // Use static hero image from assets instead of API call
+    const staticHeroImages = [
+      '/src/assets/children-learning-1.jpg',
+      '/src/assets/children-activity-1.jpg',
+      '/src/assets/children-learning-2.jpg'
+    ];
+    
+    // Pick a random static image for variety
+    const randomImage = staticHeroImages[Math.floor(Math.random() * staticHeroImages.length)];
+    setHeroImage(randomImage);
+    console.log('🎬 Hero: Using static hero image:', randomImage);
   }, []);
 
   return (
@@ -102,7 +95,7 @@ const Hero = () => {
             <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
               <Button variant="hero" size="lg" className="text-lg sm:text-xl px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto" asChild>
                 <Link to="/enrolment">
-                  Enroll Now for UGX 200,000
+                  Enroll Now
                   <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2" />
                 </Link>
               </Button>

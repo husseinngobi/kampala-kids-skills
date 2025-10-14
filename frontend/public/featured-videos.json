@@ -1,0 +1,57 @@
+{
+  "featured": [
+    {
+      "id": "house-cleaning-featured",
+      "title": "House Cleaning Fundamentals",
+      "description": "Learn essential house cleaning skills including proper techniques, safety measures, and organization methods that children can apply in their daily lives.",
+      "filename": "house-cleaning.mp4",
+      "thumbnail": "house-cleaning-thumb.jpg",
+      "category": "HOUSE_CLEANING",
+      "views": 245,
+      "uploadedAt": "2024-11-15T10:30:00Z",
+      "duration": "3:45",
+      "featured": true,
+      "staticPath": "/static-videos/house-cleaning.mp4",
+      "staticThumbnail": "/static-videos/thumbnails/house-cleaning-thumb.jpg"
+    },
+    {
+      "id": "pet-care-featured", 
+      "title": "Pet Care Essentials",
+      "description": "Discover the basics of responsible pet care, including feeding, grooming, and understanding animal needs and behavior.",
+      "filename": "pet-care.mp4",
+      "thumbnail": "pet-care-thumb.jpg",
+      "category": "PET_CARE",
+      "views": 189,
+      "uploadedAt": "2024-11-12T14:20:00Z",
+      "duration": "4:20",
+      "featured": true,
+      "staticPath": "/static-videos/pet-care.mp4",
+      "staticThumbnail": "/static-videos/thumbnails/pet-care-thumb.jpg"
+    },
+    {
+      "id": "shoe-care-featured",
+      "title": "Personal Care & Hygiene", 
+      "description": "Teaching children proper shoe care and personal hygiene habits for confidence and self-respect.",
+      "filename": "shoe-care.mp4",
+      "thumbnail": "shoe-care-thumb.jpg",
+      "category": "PERSONAL_CARE",
+      "views": 167,
+      "uploadedAt": "2024-11-10T09:15:00Z",
+      "duration": "2:30",
+      "featured": true,
+      "staticPath": "/static-videos/shoe-care.mp4",
+      "staticThumbnail": "/static-videos/thumbnails/shoe-care-thumb.jpg"
+    }
+  ],
+  "gallery": [
+    "house-cleaning.mp4",
+    "pet-care.mp4", 
+    "shoe-care.mp4",
+    "car-cleaning.mp4",
+    "laundry-care.mp4",
+    "basic-plant-care.mp4"
+  ],
+  "lastUpdated": "2024-11-15T16:45:00Z",
+  "version": "1.0.0",
+  "offlineSupport": true
+}

@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Users, Calendar, DollarSign, Clock } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 
 const ProgrammeDetails = () => {
   const programmes = [
@@ -12,7 +11,7 @@ const ProgrammeDetails = () => {
       level: "Basic",
       ages: "8-11 years", 
       duration: "4 days",
-      fee: "UGX 200,000",
+      fee: "Contact for pricing",
       maxLearners: "15 students",
       skills: ["Basic cooking", "Bed making", "Plant care", "Personal hygiene", "Simple cleaning"]
     },
@@ -20,7 +19,7 @@ const ProgrammeDetails = () => {
       level: "Intermediate", 
       ages: "12-14 years",
       duration: "4 days", 
-      fee: "UGX 200,000",
+      fee: "Contact for pricing",
       maxLearners: "15 students",
       skills: ["Dish washing", "Meal preparation", "Laundry basics", "Pet care", "Leadership basics"]
     },
@@ -28,7 +27,7 @@ const ProgrammeDetails = () => {
       level: "Advanced",
       ages: "15-17 years",
       duration: "4 days",
-      fee: "UGX 200,000", 
+      fee: "Contact for pricing", 
       maxLearners: "15 students",
       skills: ["Deep cleaning", "Full meal cooking", "Financial literacy", "DIY projects", "Beauty & grooming"]
     }
@@ -50,10 +49,9 @@ const ProgrammeDetails = () => {
     <div className="min-h-screen bg-gradient-to-b from-primary-50 to-white">
       <SEO 
         title="Programme Details & Levels | Children's Life Skills Programme"
-        description="Discover our 3 programme levels: Basic (8-11), Intermediate (12-14), Advanced (15-17). Each 4-day programme costs UGX 200,000 and covers cooking, cleaning, leadership & more."
-        keywords="children programme levels, life skills training details, cooking classes kids Kampala, leadership development children, practical skills curriculum, children education fees Uganda"
+        description="Discover our 3 programme levels: Basic (8-11), Intermediate (12-14), Advanced (15-17). Each 4-day programme covers cooking, cleaning, leadership & more. Contact us for pricing details."
+        keywords="children programme levels, life skills training details, cooking classes kids Kampala, leadership development children, practical skills curriculum, children education Uganda"
       />
-      <Navigation />
       
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">

@@ -71,7 +71,7 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
               <Phone className="w-4 h-4" />
-              <span>+256 754 723 614</span>
+              <span>+256 782 022899</span>
             </div>
             <Button variant="hero" size="sm" asChild>
               <Link to="/enrolment">Enroll Now</Link>
@@ -109,7 +109,7 @@ const Navigation = () => {
               <div className="pt-4 pb-2">
                 <Button variant="hero" size="sm" className="w-full" asChild>
                   <Link to="/enrolment" onClick={closeMenu}>
-                    Enroll Now - UGX 200,000
+                    Enroll Now
                   </Link>
                 </Button>
               </div>

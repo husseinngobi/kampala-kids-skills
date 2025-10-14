@@ -16,7 +16,6 @@ import {
   Download,
   Phone
 } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 
 // API configuration
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
@@ -27,23 +26,27 @@ const ParentalEngagement = () => {
 
   // Fetch dining/family image for hero section
   useEffect(() => {
-    const fetchHeroImage = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/gallery/media?category=DINING&limit=1`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.data && data.data.length > 0) {
-            setHeroImage(`${API_BASE_URL}${data.data[0].url}`);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching hero image:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    // TEMPORARILY DISABLED TO STOP INFINITE LOOP
+    console.log('🚫 Parental engagement image API call disabled to prevent infinite loop');
+    setLoading(false);
+    
+    // const fetchHeroImage = async () => {
+    //   try {
+    //     const response = await fetch(`${API_BASE_URL}/api/gallery/media?category=DINING&limit=1`);
+    //     if (response.ok) {
+    //       const data = await response.json();
+    //       if (data.data && data.data.length > 0) {
+    //         setHeroImage(`${API_BASE_URL}${data.data[0].url}`);
+    //       }
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching hero image:', error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
-    fetchHeroImage();
+    // fetchHeroImage();
   }, []);
   const engagementActivities = [
     {
@@ -155,9 +158,7 @@ const ParentalEngagement = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-accent-50 to-white">
-      <Navigation />
-      
+    <div className="min-h-screen bg-gradient-to-b from-accent-50 to-white">      
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">Parental Engagement</h1>

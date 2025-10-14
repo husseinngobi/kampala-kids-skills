@@ -14,7 +14,9 @@ const getBaseUrl = (req) => {
 // Helper function to generate media URL
 const generateMediaUrl = (req, type, filename) => {
   const baseUrl = getBaseUrl(req);
-  return `${baseUrl}/uploads/${type}/${filename}`;
+  // Properly encode the filename to handle spaces and special characters
+  const encodedFilename = encodeURIComponent(filename);
+  return `${baseUrl}/uploads/${type}/${encodedFilename}`;
 };
 
 // Test endpoint for debugging media URLs
@@ -39,6 +41,12 @@ router.get('/test', async (req, res) => {
   }
 });
 
+// TEMPORARY: Rate limiting to prevent infinite loops
+const requestCounts = new Map();
+const RATE_LIMIT_MAX = 10; // Max 10 requests per minute
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+
+// TEMPORARY: Endpoint disabled to stop infinite loops - investigating external source
 // Get public gallery content (videos and images)
 router.get('/media', async (req, res) => {
   try {
